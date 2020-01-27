@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.pojo.OneTimePassword;
 
 @Repository
-public interface OtpRepository extends CrudRepository<OneTimePassword, String> {
+public interface OtpRepository extends CrudRepository<OneTimePassword, String>, OtpRepositoryCustom{
 
 }

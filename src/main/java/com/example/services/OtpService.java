@@ -20,4 +20,11 @@ public class OtpService {
 		String result = del.generateOtp(mobile);
 		return result;
 	}
+	
+	@RequestMapping(value="/validateOtp/{mobile}/{otp}", method=RequestMethod.GET)
+	public String validateOtp(@PathVariable("mobile") String mobile, @PathVariable("otp") String otp) {
+		System.out.println("validateOtp :: OtpService");
+		String validateOtp = del.validateOtp(mobile, otp);
+		return validateOtp;
+	}
 }

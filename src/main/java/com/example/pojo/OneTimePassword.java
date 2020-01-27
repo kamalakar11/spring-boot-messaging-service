@@ -11,7 +11,7 @@ public class OneTimePassword {
 	@Id
 	private String mobile;
 	private String otp;
-	private Date time;
+	private long time;
 
 	public String getMobile() {
 		return mobile;
@@ -29,11 +29,16 @@ public class OneTimePassword {
 		this.otp = otp;
 	}
 
-	public Date getTime() {
+	public long getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(long time) {
 		this.time = time;
+	}
+
+	@Override
+	public String toString() {
+		return this.mobile;
 	}
 }

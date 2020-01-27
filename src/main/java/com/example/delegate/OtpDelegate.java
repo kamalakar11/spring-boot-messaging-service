@@ -1,6 +1,8 @@
 package com.example.delegate;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +35,24 @@ public class OtpDelegate {
 		OneTimePassword o = new OneTimePassword();
 		o.setMobile(mobile);
 		o.setOtp(otp);
-		o.setTime(new Date());
+		Date d = new Date();
+		o.setTime(d.getTime());
 		dao.save(o);
 		System.out.println("Saved to database!!");
 		return result;
+	}
+
+	public String validateOtp(String mobile, String otp) {
+		System.out.println("validateOtp :: OtpDelegate");
+		Optional<OneTimePassword> otpObject = dao.findById(mobile);
+		OneTimePassword objectFromDb = otpObject.orElseGet(()->new OneTimePassword());
+		String otpFromDb = objectFromDb.getOtp();
+		if(otpFromDb != null && otp.equals(otpFromDb)) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
 	}
 
 }
